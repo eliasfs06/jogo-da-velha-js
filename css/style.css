@@ -1,0 +1,84 @@
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  select,
+  input[type="radio"],
+  button {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 400px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+
+  table {
+    border-collapse: collapse; 
+  }
+  
+  th, td {
+    border: 1px solid black; 
+    text-align: center;
+    width: 20px;
+    height: 20px;
+  }
+  
+  tr:first-child td {
+    border-top: none; 
+  }
+  
+  tr:last-child td {
+    border-bottom: none; 
+  }
+  
+  td:first-child {
+    border-left: none; 
+  }
+  
+  td:last-child {
+    border-right: none; 
+  }
+  .tabuleiro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .jogadorGanhador {
+    color: green;
+    text-align: center;
+  }
+

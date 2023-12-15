@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da Velha</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h1>Jogo da Velha</h1>
+
+  <form id="jogoForm">
+    <label for="tamanhoTabuleiro"><b>Tamanho do Tabuleiro:</b></label>
+    <select id="tamanhoTabuleiro" name="tamanhoTabuleiro">
+      <option value="3">3x3</option>
+      <option value="4">4x4</option>
+      <option value="5">5x5</option>
+      <option value="6">6x6</option>
+      <option value="7">7x7</option>
+      <option value="8">8x8</option>
+      <option value="9">9x9</option>
+      <option value="10">10x10</option>
+    </select>
+    <br><br>
+
+    <label><b>Modo de Jogo:</b></label><br>
+    <input type="radio" id="doisJogadores" name="modoJogo" value="doisJogadores" checked>
+    <label for="doisJogadores">Dois Jogadores</label><br>
+    <input type="radio" id="jogarMaquina" name="modoJogo" value="jogarMaquina">
+    <label for="jogarMaquina">Jogar contra a Máquina</label><br>
+    <br>
+
+    <button>Iniciar novo jogo</button>
+    <h4 id="jogadorGanhador" class="jogadorGanhador"></h4>
+    <div id="tabuleiroContainer" class="tabuleiro-container"></div>
+
+  </form>
+</body>
+<script src="../js/controlesJogo.js"></script>
+</html>
