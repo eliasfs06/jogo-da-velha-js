@@ -38,14 +38,15 @@ function carregarTabuleiro(){
 }
 
 function carregaModoJogo(){
-    if(modoJogo === 'doisJogadores'){
-        carregaJogadasListener();
-    } else {
-        //TO-DO
-    }
+    let cells = document.querySelectorAll('#tabuleiroJogo td');
+    cells.forEach(function(cell) {
+        cell.addEventListener('click', function() {
+            realizaJogada(cell.id);
+        });
+    });
 }
 
-function carregaJogadasListener(){
+function carregaModoJogoDoisJogadores(){
     let cells = document.querySelectorAll('#tabuleiroJogo td');
     cells.forEach(function(cell) {
         cell.addEventListener('click', function() {
@@ -62,7 +63,39 @@ function realizaJogada(cellId){
             encerrarJogo();
         } else {
             mudaJogador();
+            if(modoJogo == 'jogarMaquina'){
+                setTimeout(function() {
+                    realizaJogadaMaquina();
+                }, 1000); 
+            }
         }
+    }
+
+}
+
+function realizaJogadaMaquina(){
+    let maquinaJogou = false;
+
+    function numeroAleatorio(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    while (!maquinaJogou) {
+        let linha = numeroAleatorio(tamanhoTabuleiro);
+        let coluna = numeroAleatorio(tamanhoTabuleiro);
+        let cell = document.getElementById(linha + '' + coluna);
+
+        if (cell.innerHTML === '') {
+            cell.innerHTML = valorJogadorDaVez;
+            maquinaJogou = true;
+            break;
+        }
+    }
+
+    if(verificaVitoria(valorJogadorDaVez)){
+        encerrarJogo();
+    } else {
+        mudaJogador();
     }
 }
 
@@ -91,64 +124,3 @@ function encerrarJogo(){
     ganhador.innerHTML = "Jogador " + valorJogadorDaVez + " venceu!"
 }
 
-function verificaVitoriaHorizontal(valorJogadorDaVez) {
-    let vitoria;
-    for (let linha = 0; linha < tamanhoTabuleiro; linha++) {
-        vitoria = true;
-
-        for (let coluna = 0; coluna < tamanhoTabuleiro; coluna++) {
-            let cell = document.getElementById(linha + '' + coluna);
-            if (cell.innerHTML === '' || cell.innerHTML !== valorJogadorDaVez) {
-                vitoria = false;
-                break; 
-            }
-        }
-        if (vitoria) {
-            return true; 
-        }
-    }
-    return false; 
-}
-
-function verificaVitoriaVertical(valorJogadorDaVez) {
-    let vitoria;
-    for (let coluna = 0; coluna < tamanhoTabuleiro; coluna++) {
-        vitoria = true;
-
-        for (let linha = 0; linha < tamanhoTabuleiro; linha++) {
-            let cell = document.getElementById(linha + '' + coluna);
-            if (cell.innerHTML === '' || cell.innerHTML !== valorJogadorDaVez) {
-                vitoria = false;
-                break; 
-            }
-        }
-        if (vitoria) {
-            return true; 
-        }
-    }
-    return false; 
-}
-
-function verificaVitoriaDiagonalPrincipal(valorJogadorDaVez) {
-    let vitoria = true;
-    for (let i = 0; i < tamanhoTabuleiro; i++) {
-        let cell = document.getElementById(i + '' + i);
-        if (cell.innerHTML !== valorJogadorDaVez) {
-            vitoria = false;
-            break;
-        }
-    }
-    return vitoria;
-}
-
-function verificaVitoriaDiagonalSecundaria(valorJogadorDaVez) {
-    let vitoria = true;
-    for (let i = 0; i < tamanhoTabuleiro; i++) {
-        let cell = document.getElementById(i + '' + (tamanhoTabuleiro - 1 - i));
-        if (cell.innerHTML !== valorJogadorDaVez) {
-            vitoria = false;
-            break;
-        }
-    }
-    return vitoria;
-}
